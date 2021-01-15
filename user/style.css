@@ -1,0 +1,179 @@
+
+    /* #aplayer {
+      overflow: hidden;
+      margin-bottom: 10px;
+      position: fixed;
+      bottom: 0;
+      
+      width: 100%;
+    } */
+/* for navbar button */
+           .btn{
+            font-weight: bold;
+                border-radius:30px;
+           }
+           .btn:hover{
+                color: crimson;
+                background-color: white;
+                font-weight: bold;
+                border: 2px solid red;
+           }
+                .carousel-item {
+                  padding: 0px 80px;
+                }
+
+/* css for courasel */
+/* *{  
+  background: rgb(233, 232, 232);
+} */
+
+body { font-family: sans-serif; 
+height: 1000px;
+
+ background:rgb(233, 232, 232);}
+
+.main-carousel {
+
+  background: #EEE;
+  margin:50px 10px;
+}
+
+ .top-picks .carousel-cell {
+  width: 30%;
+  height: 200px;
+  margin-right: 10px;
+  display: inline-block;
+  background: #8C8;
+  border-radius: 5px;
+  overflow: hidden;
+  /* counter-increment: carousel-cell; */
+}
+
+
+@media only screen and  (max-width:451px){
+    .top-picks .carousel-cell{
+        width: 95%;
+    }
+} 
+@media (min-width: 452px)and  (max-width:991px){
+    .top-picks.carousel-cell{
+        width: 50%;
+    }
+} 
+ .TRENDING-SONG .carousel-cell {
+  width: 15%;
+  height: 100px;
+  margin-right: 10px;
+  display: inline-block;
+  background: #8C8;
+  border-radius: 5px;
+  overflow: hidden;
+  /* counter-increment: carousel-cell; */
+}
+@media only screen and  (max-width:451px){
+    .TRENDING-SONG .carousel-cell{
+        width: 40%;
+    }
+} 
+@media (min-width: 452px)and  (max-width:991px){
+    .TRENDING-SONG .carousel-cell{
+        width: 30%;
+    }
+} 
+ .Top-chart .carousel-cell {
+  width: 15%;
+  height: 100px;
+  margin-right: 10px;
+  display: inline-block;
+  background: #8C8;
+  border-radius: 5px;
+  overflow: hidden;
+  /* counter-increment: carousel-cell; */
+}
+@media only screen and  (max-width:451px){
+    .Top-chart .carousel-cell{
+        width: 40%;
+    }
+} 
+@media (min-width: 452px)and  (max-width:991px){
+    .Top-chart .carousel-cell{
+        width: 30%;
+    }
+} 
+ .NEW-RELEASE .carousel-cell {
+  width: 15%;
+  height: 100px;
+  margin-right: 10px;
+  display: inline-block;
+  background: #8C8;
+  border-radius: 5px;
+  overflow: hidden;
+  /* counter-increment: carousel-cell; */
+}
+@media only screen and  (max-width:451px){
+    .NEW-RELEASE .carousel-cell{
+        width: 40%;
+    }
+} 
+@media (min-width: 452px)and  (max-width:991px){
+    .NEW-RELEASE .carousel-cell{
+        width: 30%;
+    }
+} 
+.carousel-cell img {
+  width:100%;
+  height: 100%; 
+ 
+}
+
+
+.browse .carousel-cell {
+  width: 15%;
+  height: 200px;
+  margin-right: 10px;
+  display: inline-block;
+  background:rgb(196, 194, 194);
+  border-radius: 5px;
+  overflow: hidden;
+  /* counter-increment: carousel-cell; */
+}
+
+@media only screen and  (max-width:451px){
+  .browse .carousel-cell{
+      width: 40%;
+  }
+} 
+@media (min-width: 452px)and  (max-width:991px){
+  .browse .carousel-cell{
+      width: 30%;
+  }
+} 
+
+
+ .browse .carousel-cell img {
+  width:100%;
+  height: 70%; 
+ 
+}
+
+
+
+/* footer code */
+.card{
+  background-color: rgb(233, 232, 232);
+  border: 0px;
+}
+.card-text a{
+ color:rgb(119, 117, 117);
+ text-decoration: none;
+}
+.card-text a:hover{
+ color:black;
+ text-decoration: none;
+}
+.footer{
+  text-align: center;
+  background: rgb(233, 232, 232);
+}
+
+
