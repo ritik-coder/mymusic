@@ -36,6 +36,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,7 +49,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     <meta name="author" content=""> -->
 
     <title> Login</title>
-
+    <link rel="icon" href="favicon.ico" type="image/gif" sizes="16x16">
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link rel="icon" href="favicon.ico" type="image/gif" sizes="16x16">
@@ -171,3 +172,4 @@ echo '
 </body>
 
 </html>
+

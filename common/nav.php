@@ -3,7 +3,7 @@ SESSION_START();
 ?> 
    <!-- it's a navbar -->
 <?php
-echo'<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+echo'<nav class="navbar navbar-expand-lg navbar-light bg-dark ">
     <a class="navbar-brand" href="home.php" style="color:red" >Melody Music</a>
    
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,14 +18,14 @@ echo'<nav class="navbar navbar-expand-lg navbar-light bg-dark">
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="browse.php" style="color:white">Browse</a>
+          <a class="nav-link" href="browse.php" style="color:white">Melody music</a>
         </li>';
 
 
         if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){ 
         }else{
         echo'<li class="nav-item">
-          <a class="nav-link" href="favorate.php" style="color:white" >My music</a>
+          <a class="nav-link" href="favorate.php" style="color:white" >My favorate</a>
         </li>';}
 
       echo'</ul>

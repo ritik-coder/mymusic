@@ -7,8 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="favicon.ico" type="image/gif" sizes="16x16">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css">
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -18,6 +21,11 @@
     <title>MUSIC PLAYER</title>
     <style>
    
+   
+   body{     
+            font-family: 'Cookie', cursive;
+             font-size:20px;
+          }
 
       .flex{
         display: flex;
@@ -41,13 +49,45 @@
        margin-bottom:0px;
       
      }
-     #aplayer {
-  overflow: hidden;
+
  
+
+#aplayer{
   position: fixed;
-  bottom: 0;
   width: 100%;
+  bottom: 0;
+  padding-bottom: 1px;
+  margin-bottom: 2px;
+  left: 0;
+  /* Rest of your styling */
 }
+.navbar{
+ 
+  width: 100%;
+  
+  /* Rest of your styling */
+}
+
+/* .notification-close {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  
+} */
+
+@media only screen and  (max-width:451px){
+  #aplayer{
+      width: 100%;
+
+  }
+} 
+@media only screen and  (max-width:451px){
+  .navbar{
+      width: 112%;
+
+  }
+} 
+
 .table-row{
 cursor:pointer;
 }
@@ -63,18 +103,25 @@ include '../common/config.php';
 $id=$_GET['catid'];
 $categery=$_GET['categery'];
 $song=false;
+
+
+
+              
 ?>
 
 <!-- it's a main section -->
+<div class="container row  py-2">
 <hr>
-<div class="container row ">
   <ul class="flex">
-   <li> <a href="#">Ganna </a></li>   
+   <li> <a href="#">Melody Music </a></li>   
    <li><a href="#">Playlist </a></li>   
    <li>Punjabi Top 50</li>   
 </ul>
 </div>
 <hr>
+
+
+
 
 
 <?php
@@ -85,19 +132,31 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
   $useremail='user';
    }
  else{ $useremail=$_SESSION['email'];}
+
 $sql="SELECT * FROM `music` WHERE sr='$id'";
 $result=mysqli_query($conn,$sql);
 $num=mysqli_num_rows($result);
 if($num>0){
                                   
 while($row= mysqli_fetch_assoc($result)){
+    
+  $music=$row['music']; 
+  $sqlf="SELECT * FROM `usersong` WHERE useremail='$useremail'AND favoratesong='$music'";
+  $resultf=mysqli_query($conn,$sqlf);
+  $numf=mysqli_num_rows($resultf);
 
-    if(array_key_exists('button1', $_POST)) { 
-      
-     $music=$row['music']; 
-     $sqli="INSERT INTO `usersong` (`useremail`, `favoratesong`) VALUES ('$useremail', '$music')";
-     $resulti=mysqli_query($conn, $sqli);
+  if(array_key_exists('button1', $_POST)) { 
+    if($numf>0){  
+    }else{
+
+      $sqli="INSERT INTO `usersong` (`useremail`, `favoratesong`) VALUES ('$useremail', '$music')";
+      $resulti=mysqli_query($conn, $sqli);
+      $numf=$numf+1;
     }
+    //  $music=$row['music']; 
+    //  $sqli="INSERT INTO `usersong` (`useremail`, `favoratesong`) VALUES ('$useremail', '$music')";
+    //  $resulti=mysqli_query($conn, $sqli);
+  }
 
 
     ?>
@@ -108,20 +167,41 @@ while($row= mysqli_fetch_assoc($result)){
 
 
         <div class="media-body ml-3">
-          <h5 class="mt-0"><?php echo $row['music']; ?>
+          <h5 class="mt-0">          <?php
+          $row['music'] = substr($row['music'], 0, strpos($row['music'], ".")); 
+           echo $row['music']; 
+           ?> 
           </h5>
-          <P>  created by ganna |<?php echo $useremail;  ?></P>
+          <P>  created by Melody Music |
+          <?php
+          $useremail = substr($useremail, 0, strpos($useremail, "@")); 
+           echo $useremail; 
+           ?> 
+        
+        
+        </P>
           <!-- <button type="button" class="btn btn-danger my-3">add to favorate</button> -->
           <?php
             if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){ 
-              echo'<form method="post"> 
-              <input type="button" name="button2" class="btn btn-danger my-3" value="loggin to add the favorate" /> 
-              </form>';
+              echo'
+              <a href="login.php" class="btn btn-danger " >login to add in favorate</a>
+              ';
                }
              else{
-              echo'<form method="post"> 
-              <input type="submit" name="button1" class="btn btn-danger my-3" value="add to favorate" /> 
-              </form>';}
+             
+              if($numf>0){  
+                echo'<form method="post"> 
+                <input type="submit" name="button1" class="btn btn-danger my-3" value="your favorate" /> 
+                </form>';
+
+              }else{
+                echo'<form method="post"> 
+                <input type="submit" name="button1" class="btn btn-danger my-3" value="add to favorate" /> 
+                </form>';
+              }
+          
+
+            }
           ?>
           <!-- <form method="post"> 
           <input type="submit" name="button1" class="btn btn-danger my-3" value="add to favorate" /> 
@@ -135,6 +215,13 @@ while($row= mysqli_fetch_assoc($result)){
   }}
 
        ?>
+
+
+
+
+
+
+
 
 
 
@@ -157,7 +244,8 @@ $num=mysqli_num_rows($result);
         
         <th scope="col">TITLE</th>
         <th scope="col">ARTIST</th>
-        <th scope="col">DURATION</th>
+       
+        <!-- <th scope="col">DURATION</th> -->
       </tr>
     </thead>
     <tbody>
@@ -169,13 +257,17 @@ $num=mysqli_num_rows($result);
           ?>
       <tr class="table-row" data-href="musictable.php?catid=<?php echo $row['sr']; ?>&&categery=<?php echo $row['categery']; ?> ">
           <th scope="row"><?php echo $count; ?></th>  
-        <td >
-       
-          <img src="dil.png" height="30px" width="30px">
+
+       <td ><img src="dil.png" height="25px" width="25px"></td>
+
+        <td> 
+          <?php
+          $row['music'] = substr($row['music'], 0, strpos($row['music'], ".")); 
+           echo $row['music']; 
+           ?> 
         </td>
-        <td> <?php echo $row['music']; ?> </td>
         <td> <?php echo $row['Elbum']; ?> </td>
-        <td>...</td> 
+        
      </tr> 
                                    
          <?php
@@ -189,6 +281,7 @@ $num=mysqli_num_rows($result);
     </tbody>
   </table>
 <hr>
+
 
 
 
@@ -233,7 +326,7 @@ const ap = new APlayer({
   container: document.getElementById('aplayer'),
   listFolded: true,
   audio: [{
-      name: 'ganna',
+      name: 'MelodyMusic',
       artist: '<?php echo $row['Elbum'];  ?>',
       url: '../music/<?php echo $row['music'];  ?>',
       cover: '../musicpic/<?php echo $row['musicpic'];  ?>'

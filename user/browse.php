@@ -6,13 +6,22 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">  
         <link rel="icon" href="favicon.ico" type="image/gif" sizes="16x16">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
         <!-- Bootstrap CSS -->
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" type="text/css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
         <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
         <link rel="stylesheet" href="style.css">
         <title>Melody</title>
 
         <style>
+             
+          body{
+            font-family: 'Cookie', cursive;
+             font-size:20px;
+          }
+    
       
          
           .c-body {
@@ -59,12 +68,15 @@ $num=mysqli_num_rows($result);
       while($row= mysqli_fetch_assoc($result)){
        ?>
          <div class="carousel-cell">
-         <a href="ganna.php?catid=<?php echo $row['sr']; ?>&&categery=<?php echo $row['categery']; ?>   ">
+         <a href="musictable.php?catid=<?php echo $row['sr']; ?>&&categery=<?php echo $row['categery']; ?>   ">
          <img src="../musicpic/<?php echo $row['musicpic'];  ?>"  alt="not availabale">
         </a>
       
       <div class="card-body c-body">
-        <p class="card-title c-title"><?php echo $row['music'];  ?></p>
+        <p class="card-title c-title"><?php
+          $row['music'] = substr($row['music'], 0, strpos($row['music'], ".")); 
+           echo $row['music']; 
+           ?> </p>
         <p class="card-text c-text"><?php echo $row['categery'];  ?></p>
       </div>
       </div>
@@ -115,14 +127,14 @@ $num=mysqli_num_rows($result);
           <div class="col-sm-3 ">
                 <div class="row border rounded shadow-sm">
                     <div class="d-lg-block">
-                        <a href="ganna.php?catid=<?php echo $row['sr']; ?>&&categery=<?php echo $row['categery']; ?>   ">
+                        <a href="musictable.php?catid=<?php echo $row['sr']; ?>&&categery=<?php echo $row['categery']; ?>   ">
                         <img class="border rounded" src="../musicpic/<?php echo $row['musicpic']; ?>" style="max-width: 150px; height: auto;">
                         </a>
                     </div>
-                    <div class="col d-flex justify-content-around flex-column position-static">
+                    <!-- <div class="col d-flex justify-content-around flex-column position-static">
                         <p class="mb-0">Top Songs</p>
                         <p class="mb-1 text-muted"><?php echo $row['Elbum']; ?></p>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 <?php

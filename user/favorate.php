@@ -6,11 +6,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">  
         <link rel="icon" href="favicon.ico" type="image/gif" sizes="16x16">
         <!-- Bootstrap CSS -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" type="text/css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
         <link rel="stylesheet" href="style.css">
         <title> Melody</title>
 
         <style>
+     
+   
+          body{
+            font-family: 'Cookie', cursive;
+             font-size:20px;
+          }
      
           
          
@@ -77,16 +86,35 @@ $num=mysqli_num_rows($result);
            if($num>0){                           
           while($row= mysqli_fetch_assoc($result)){
         ?>
-         <div class="col" style="margin-bottom: 20px;">
-        <a href="ganna.php?catid=<?php echo $row['sr']; ?>&&categery=<?php echo $row['categery']; ?>   ">
+
+         <div class="lg:w-1/4 sm:w-1/2" style="margin-bottom: 20px;">
+        <a href="musictable.php?catid=<?php echo $row['sr']; ?>&&categery=<?php echo $row['categery']; ?>   ">
         <img src="../musicpic/<?php echo $row['musicpic'];  ?>" style="max-height: 100px;">
         </a>
         </div>
+
         <?php
                            }
                            }
-                           else{
-                               echo "no record found";
+                           else{ 
+                           ?>
+
+
+<div class="Empty cart mx-auto text-center">
+    <h1 class="my-2 font-bold text-3xl ">you havn't added any favorate song 😢 </h1>
+    <!-- <p class="font-gray-500 my-2 text-xl" >You probably haven't ordered a pizza yet.<br>
+         To order a pizza go to the main page</p> -->
+         <img  class="w-1/3 mx-auto"src="dil.png" alt=" ">
+         <button class="btn px-6 py-2 rounded-full my-4" onclick="window.location.href = 'home.php';"> GO back</button>
+</div>
+
+</section>
+
+
+
+                           <?php
+
+
                            }
                            
                            ?>

@@ -9,7 +9,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
       $email=$_POST["email"];
       $password=$_POST["password"];
       $cpassword=$_POST["cpassword"];
-       
+      $token=bin2hex(random_bytes(15));
+      $status=0;
 
       $extsql="Select * from user where email='$email'";
       $result=mysqli_query($conn, $extsql);
@@ -23,7 +24,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
        
       if(($password==$cpassword)){
           $hash=password_hash($password,PASSWORD_DEFAULT);
-          $sql="INSERT INTO `user` (`firstname`, `password`, `lastname`, `email`) VALUES ('$firstname', '$hash', '$lastname', '$email')";
+          $sql="INSERT INTO `user` (`firstname`, `password`, `lastname`, `email`,`token`,`status`) VALUES ('$firstname', '$hash', '$lastname', '$email','$token','$status')";
           $result=mysqli_query($conn, $sql);
           if($result){    
             header("location: login.php");
@@ -38,6 +39,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 }
 ?>
 <!DOCTYPE html>
+ 
 <html lang="en">
 
 <head>
@@ -49,7 +51,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     <meta name="author" content=""> -->
 
     <title>Register</title>
-
+    <link rel="icon" href="favicon.ico" type="image/gif" sizes="16x16">
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
